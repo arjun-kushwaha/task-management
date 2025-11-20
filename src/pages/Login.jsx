@@ -15,6 +15,7 @@ const Login = () => {
     setLoading(true);
 
     const result = await login(username, password);
+    console.log('Login result:', result,username, password);
     if (!result.success) {
       setError(result.message);
     }
