@@ -8,6 +8,7 @@ import ClientReports from '../components/ClientReports';
 import '../styles/Dashboard.css';
 import '../services/mockApi'
 import { mockApi } from '../services/mockApi';
+import { authService } from '../services/api';
 
 const AdminDashboard = () => {
   const { user, logout } = useAuth();
@@ -20,8 +21,10 @@ const AdminDashboard = () => {
     setLoading(true);
     setError(null);
     try {
-      // const response = await taskService.getTasks();
-      const response = await mockApi.getTasks(); // Using mock API
+       const response = await taskService.getTasks();
+       console.log('Fetched tasks:', response);
+       console.log('Using token:', authService.getToken());
+      // const response = await mockApi.getTasks(); // Using mock API
       if (response.success) {
         setTasks(response.data);
       } else {

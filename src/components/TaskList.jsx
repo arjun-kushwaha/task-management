@@ -56,7 +56,7 @@ const TaskList = ({ tasks, onRefresh, isAdmin }) => {
               {tasks.map(task => (
                 <tr key={task.id}>
                   <td>{task.clientName}</td>
-                  <td>{task.taskCategory}</td>
+                  <td>{task.task_category}</td>
                   <td>{task.taskName}</td>
                   <td>{task.employeeName}</td>
                   <td>
