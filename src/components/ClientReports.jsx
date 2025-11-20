@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { mockApi } from '../services/mockApi';
+import { clientService } from '../services/api';
 
 const ClientReports = () => {
   const [clients, setClients] = useState([]);
@@ -12,10 +13,11 @@ const ClientReports = () => {
   }, []);
 
   const loadClients = async () => {
-    const response = await mockApi.getClients();
+    const response = await clientService.getClients();
     if (response.success) {
       setClients(response.data);
     }
+    console.log('Clients loaded:', response.data);
   };
 
   const generateReport = async () => {

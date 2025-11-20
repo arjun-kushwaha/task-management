@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { mockApi } from '../services/mockApi';
+import { clientService,employeeService, taskService } from '../services/api';
 
 const TaskAssignment = ({ onTaskCreated }) => {
   const [clients, setClients] = useState([]);
@@ -20,8 +21,8 @@ const TaskAssignment = ({ onTaskCreated }) => {
 
   const loadData = async () => {
     const [clientsRes, employeesRes] = await Promise.all([
-      mockApi.getClients(),
-      mockApi.getEmployees()
+      clientService.getClients(),
+      employeeService.getEmployees()
     ]);
 
     if (clientsRes.success) setClients(clientsRes.data);
@@ -39,7 +40,7 @@ const TaskAssignment = ({ onTaskCreated }) => {
       assignedTo: parseInt(formData.assignedTo)
     };
 
-    const response = await mockApi.createTask(taskData);
+    const response = await taskService.createTask(taskData);
     if (response.success) {
       setMessage('Task assigned successfully!');
       setFormData({

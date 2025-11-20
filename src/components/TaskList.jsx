@@ -1,9 +1,10 @@
 import { mockApi } from '../services/mockApi';
+import { taskService } from '../services/api';
 
 const TaskList = ({ tasks, onRefresh, isAdmin }) => {
   const handleDelete = async (taskId) => {
     if (window.confirm('Are you sure you want to delete this task?')) {
-      const response = await mockApi.deleteTask(taskId);
+      const response = await taskService.deleteTask(taskId);
       if (response.success) {
         onRefresh();
       }
@@ -57,17 +58,17 @@ const TaskList = ({ tasks, onRefresh, isAdmin }) => {
                 <tr key={task.id}>
                   <td>{task.clientName}</td>
                   <td>{task.task_category}</td>
-                  <td>{task.taskName}</td>
+                  <td>{task.task_name}</td>
                   <td>{task.employeeName}</td>
                   <td>
                     <span className={`badge ${getStatusBadge(task.status)}`}>
                       {task.status.replace('_', ' ')}
                     </span>
                   </td>
-                  <td>{task.updatedTill || '-'}</td>
+                  <td>{task.updated_till || '-'}</td>
                   <td>
-                    <span className={`badge ${getApprovalBadge(task.approvalStatus)}`}>
-                      {task.approvalStatus}
+                    <span className={`badge ${getApprovalBadge(task.approval_status)}`}>
+                      {task.approval_status.replace('_', ' ')}
                     </span>
                   </td>
                   {isAdmin && (

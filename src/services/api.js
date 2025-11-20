@@ -94,13 +94,17 @@ export const taskService = {
     return response.json();
   },
 
-  async deleteTask(id) {
-    const response = await fetch(`${API_BASE_URL}/delete_task.php?id=${id}`, {
-      method: 'DELETE',
-      headers: getAuthHeaders(),
-    });
-    return response.json();
-  },
+async deleteTask(id) {
+  const response = await fetch(`${API_BASE_URL}/delete_task.php?id=${id}`, {
+    method: 'DELETE',
+    headers: getAuthHeaders(),
+  });
+
+  const data = await response.json();   // read once
+  console.log("Response", data);
+
+  return data;
+},
 
   async getClientReport(clientId) {
     const response = await fetch(`${API_BASE_URL}/client_report.php?clientId=${clientId}`, {
@@ -124,7 +128,9 @@ export const employeeService = {
     const response = await fetch(`${API_BASE_URL}/employees.php`, {
       headers: getAuthHeaders(),
     });
-    return response.json();
+    const emp_data = await response.json();
+    console.log("Employee Data:", emp_data);
+    return emp_data;
   },
 };
 

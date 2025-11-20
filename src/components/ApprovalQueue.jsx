@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { mockApi } from '../services/mockApi';
+import { taskService } from '../services/api';
 
 const ApprovalQueue = ({ onApprovalChange }) => {
   const [pendingTasks, setPendingTasks] = useState([]);
@@ -11,7 +12,7 @@ const ApprovalQueue = ({ onApprovalChange }) => {
 
   const loadPendingTasks = async () => {
     setLoading(true);
-    const response = await mockApi.getTasks({ approvalStatus: 'pending' });
+    const response = await taskService.getTasks({ approvalStatus: 'pending' });
     if (response.success) {
       setPendingTasks(response.data.filter(t => t.status !== 'pending'));
     }
@@ -19,7 +20,7 @@ const ApprovalQueue = ({ onApprovalChange }) => {
   };
 
   const handleApproval = async (taskId, approvalStatus) => {
-    const response = await mockApi.approveTask(taskId, approvalStatus);
+    const response = await taskService.approveTask(taskId, approvalStatus);
     if (response.success) {
       loadPendingTasks();
       onApprovalChange();
