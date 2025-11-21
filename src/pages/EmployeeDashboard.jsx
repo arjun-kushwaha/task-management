@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { mockApi } from '../services/mockApi';
+import { clientService, employeeService } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import EmployeeTaskList from '../components/EmployeeTaskList';
 import '../styles/Dashboard.css';
@@ -18,7 +19,7 @@ const EmployeeDashboard = () => {
 
   const loadTasks = async () => {
     setLoading(true);
-    const response = await mockApi.getTasks({ employeeId: user.id });
+    const response = await employeeService.getEmployeeTasks(user.id);
     if (response.success) {
       setTasks(response.data);
       calculateStats(response.data);

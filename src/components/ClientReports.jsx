@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { mockApi } from '../services/mockApi';
-import { clientService } from '../services/api';
+import { clientService, employeeService } from '../services/api';
 
 const ClientReports = () => {
   const [clients, setClients] = useState([]);

@@ -14,9 +14,10 @@ const ApprovalQueue = ({ onApprovalChange }) => {
     setLoading(true);
     const response = await taskService.getTasks({ approvalStatus: 'pending' });
     if (response.success) {
-      setPendingTasks(response.data.filter(t => t.status !== 'pending'));
+      setPendingTasks(response.data.filter(t => t.status == 'pending'));
     }
     setLoading(false);
+    console.log('Pending tasks loaded:', response.data);
   };
 
   const handleApproval = async (taskId, approvalStatus) => {
@@ -62,15 +63,15 @@ const ApprovalQueue = ({ onApprovalChange }) => {
               {pendingTasks.map(task => (
                 <tr key={task.id}>
                   <td>{task.clientName}</td>
-                  <td>{task.taskCategory}</td>
-                  <td>{task.taskName}</td>
+                  <td>{task.task_category}</td>
+                  <td>{task.task_name}</td>
                   <td>{task.employeeName}</td>
                   <td>
                     <span className={`badge ${getStatusBadge(task.status)}`}>
                       {task.status.replace('_', ' ')}
                     </span>
                   </td>
-                  <td>{task.updatedTill || '-'}</td>
+                  <td>{task.updated_till || '-'}</td>
                   <td>
                     <div className="action-buttons">
                       <button

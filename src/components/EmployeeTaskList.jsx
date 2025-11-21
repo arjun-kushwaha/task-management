@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { mockApi } from '../services/mockApi';
+import { employeeService } from '../services/api';
 
 const EmployeeTaskList = ({ tasks, onRefresh, activeTab }) => {
   const [editingTask, setEditingTask] = useState(null);
@@ -28,7 +29,7 @@ const EmployeeTaskList = ({ tasks, onRefresh, activeTab }) => {
   };
 
   const handleSave = async (taskId) => {
-    const response = await mockApi.updateTaskStatus(
+    const response = await employeeService.updateTaskStatus(
       taskId,
       formData.status,
       formData.updatedTill

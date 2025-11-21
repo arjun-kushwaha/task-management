@@ -132,6 +132,12 @@ export const employeeService = {
     console.log("Employee Data:", emp_data);
     return emp_data;
   },
+  async getEmployeeTasks(id) {
+    const response = await fetch(`${API_BASE_URL}/get_employee_tasks.php?emp_id=${id}`, {
+      headers: getAuthHeaders(),
+    });
+    return response.json();
+  }
 };
 
 export const userService = {
