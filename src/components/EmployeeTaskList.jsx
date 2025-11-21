@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { mockApi } from '../services/mockApi';
-import { employeeService } from '../services/api';
+import { employeeService, taskService } from '../services/api';
 
 const EmployeeTaskList = ({ tasks, onRefresh, activeTab }) => {
   const [editingTask, setEditingTask] = useState(null);
@@ -8,7 +8,7 @@ const EmployeeTaskList = ({ tasks, onRefresh, activeTab }) => {
     status: '',
     updatedTill: ''
   });
-
+  console.log("Tasks in EmployeeTaskList:", tasks);
   const canUpdateTask = (task) => {
     return task.approvalStatus !== 'approved';
   };
@@ -29,7 +29,7 @@ const EmployeeTaskList = ({ tasks, onRefresh, activeTab }) => {
   };
 
   const handleSave = async (taskId) => {
-    const response = await employeeService.updateTaskStatus(
+    const response = await taskService.updateTaskStatus(
       taskId,
       formData.status,
       formData.updatedTill
@@ -86,11 +86,10 @@ const EmployeeTaskList = ({ tasks, onRefresh, activeTab }) => {
                     {task.status.replace('_', ' ')}
                   </span>
                   <span className={`badge ${getApprovalBadge(task.approvalStatus)}`}>
-                    {task.approvalStatus}
+                    {task.approvalStatus.replace('_', ' ')}
                   </span>
                 </div>
               </div>
-
               <div className="task-card-body">
                 <div className="task-detail">
                   <strong>Category:</strong> {task.taskCategory}
