@@ -6,6 +6,7 @@ import TaskListWithPagination from '../components/TaskListWithPagination';
 import ApprovalQueue from '../components/ApprovalQueue';
 import ClientReports from '../components/ClientReports';
 import UserManagement from '../components/UserManagement';
+import ClientManagement from '../components/ClientManagement';
 import '../styles/Dashboard.css';
 import '../services/mockApi'
 import { mockApi } from '../services/mockApi';
@@ -87,11 +88,10 @@ const AdminDashboard = () => {
             User Management
           </button>
           <button
-            className="nav-item disabled"
-            disabled
+            className={activeTab === 'clients' ? 'nav-item active' : 'nav-item'}
+            onClick={() => { setActiveTab('clients'); setSidebarOpen(false); }}
           >
             Client Management
-            <span className="coming-soon">Coming Soon</span>
           </button>
         </nav>
       </div>
@@ -213,6 +213,9 @@ const AdminDashboard = () => {
         )}
         {!loading && activeTab === 'users' && (
           <UserManagement />
+        )}
+        {!loading && activeTab === 'clients' && (
+          <ClientManagement />
         )}
       </div>
     </div>

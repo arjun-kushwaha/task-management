@@ -121,6 +121,39 @@ export const clientService = {
     });
     return response.json();
   },
+
+  async getClient(id) {
+    const response = await fetch(`${API_BASE_URL}/get_client.php?id=${id}`, {
+      headers: getAuthHeaders(),
+    });
+    return response.json();
+  },
+
+  async createClient(clientData) {
+    const response = await fetch(`${API_BASE_URL}/create_client.php`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(clientData),
+    });
+    return response.json();
+  },
+
+  async updateClient(clientData) {
+    const response = await fetch(`${API_BASE_URL}/update_client.php`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(clientData),
+    });
+    return response.json();
+  },
+
+  async deleteClient(id) {
+    const response = await fetch(`${API_BASE_URL}/delete_client.php?id=${id}`, {
+      method: 'DELETE',
+      headers: getAuthHeaders(),
+    });
+    return response.json();
+  },
 };
 
 export const employeeService = {

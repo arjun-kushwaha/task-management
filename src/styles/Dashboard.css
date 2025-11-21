@@ -1020,6 +1020,92 @@
   text-align: center;
 }
 
+.client-management {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.client-form-container {
+  background: #f7fafc;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.client-form-container h3 {
+  color: #2d3748;
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+}
+
+.client-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.search-bar {
+  margin-bottom: 1.5rem;
+}
+
+.clients-table-container {
+  overflow-x: auto;
+}
+
+.clients-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.clients-table thead {
+  background-color: #f7fafc;
+}
+
+.clients-table th {
+  padding: 1rem;
+  text-align: left;
+  color: #4a5568;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.clients-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  color: #2d3748;
+}
+
+.clients-table tbody tr {
+  transition: background-color 0.2s;
+}
+
+.clients-table tbody tr:hover {
+  background-color: #f7fafc;
+}
+
+.code-badge {
+  display: inline-block;
+  background-color: #e6f7ff;
+  color: #0050b3;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.no-clients {
+  text-align: center;
+  color: #a0aec0;
+  padding: 3rem;
+  font-size: 1.1rem;
+}
+
 @media (max-width: 768px) {
   .dashboard-header {
     padding: 1rem;
